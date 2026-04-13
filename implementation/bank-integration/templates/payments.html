@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+
+    <h1>Payments for {{ customer.attributes.name }}</h1>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Status</th>
+      <th>Amount</th>
+    </tr>
+  {% for payment in payments %}
+    <tr>
+      <form method="post" action="/payments/{{payment.id}}">
+          <td>{{ payment.id }}</td>
+          <td>
+              <select name="status" id="status">
+                <option selected hidden value="{{ payment.attributes.status }}"> {{ payment.attributes.status }} </option>
+                <option value="pending">Pending</option>
+                <option value="fraud">Fraud</option>
+                <option value="approved">Approved</option>
+              </select> <br><br>
+          </td>
+          <td>
+            <input type="number" id="amount" name="amount" value="{{ payment.attributes.amount }}"><br>
+          </td>
+          <td>
+              <input type="submit" value="Update payment">
+          </td>
+      </form>
+    </tr>
+  {% endfor %}
+  </table>
+
+{% endblock body%}

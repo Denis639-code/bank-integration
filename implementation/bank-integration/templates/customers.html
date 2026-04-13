@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+
+    <h1>Customers</h1>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  {% for customer in customers %}
+    <tr>
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.attributes.name }}</td>
+      <td>{{ customer.attributes.email }}</td>
+      <td><a href="/customers/{{customer.id}}/payments">View payments</a></td>
+    </tr>
+  {% endfor %}
+  </table>
+
+{% endblock body%}
+
